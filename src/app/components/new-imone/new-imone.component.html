@@ -1,41 +1,47 @@
 <main>
-    <form>
+    <form (ngSubmit)="addNewCompany(newForm)" #newForm="ngForm">
         <div class="form-row">
-            <label for="">Pavadinimas:</label>
+            <label for="">Imones Pavadinimas:</label>
             <div class="form-input">
-                <input type="text" name="name" id="">
+                <input type="text" name="name" id="" ngModel required minlength="2" maxlength="30" pattern="[a-zA-Z]*" #inputName="ngModel">
+                <span *ngIf="!inputName.valid && inputName.touched">Imones Pavadinimas yra privalomas, nuo 2-30 simboliu, tekstas</span>
             </div>
         </div>
         <div class="form-row">
             <label for="">Imones kodas:</label>
             <div class="form-input">
-                <input type="text" name="name" id="">
+                <input type="number" name="companyCode" id="" ngModel required pattern="[0-9]{9}" #inputCompanyCode="ngModel">
+                <span *ngIf="!inputCompanyCode.valid && inputCompanyCode.touched">Imones kodas yra privalomas (9 skaiciai)</span>
             </div>
         </div>
         <div class="form-row">
             <label for="">PVM registracijos kodas:</label>
             <div class="form-input">
-                <input type="text" name="name" id="">
+                <input type="text" name="PVMregistrationCode" id="" ngModel required pattern="^LT\d{12}$" #inputPVMregistrationCode="ngModel">
+                <span *ngIf="!inputPVMregistrationCode.valid && inputPVMregistrationCode.touched">PVM registracijos kodas yra privalomas pvz: LT100000000000 </span>
             </div>
         </div>
         <div class="form-row">
             <label for="">Adresas:</label>
             <div class="form-input">
-                <input type="text" name="name" id="">
+                <input type="text" name="adress" id="" ngModel required #inputAdress="ngModel">
+                <span *ngIf="!inputAdress.valid && inputAdress.touched">Adresas yra privalomas </span>
             </div>
         </div>
         <div class="form-row">
             <label for="">el. pasto adresas:</label>
             <div class="form-input">
-                <input type="text" name="name" id="">
+                <input type="email" name="email" id="" ngModel required email #inputEmail="ngModel">
+                <span *ngIf="!inputEmail.valid && inputEmail.touched">Elektroninis pastas yra privalomas, turi buti validus adresas pvz: example&#64;gmail.com </span>
             </div>
         </div>
         <div class="form-row">
             <label for="">Telefonas:</label>
             <div class="form-input">
-                <input type="text" name="name" id="">
+                <input type="text" name="phoneNumber" id="" ngModel required appPhonevalidator #inputPhoneNumber="ngModel">
+                <span *ngIf="!inputPhoneNumber.valid && inputPhoneNumber.touched">Telefono numeris yra privalomas, turi buti validus numeris pvz: +37005555555 </span>
             </div>
         </div>
-        <button>Prideti</button>
+        <button type="submit" [disabled]="!newForm.valid">Prideti</button>
     </form>
 </main>
