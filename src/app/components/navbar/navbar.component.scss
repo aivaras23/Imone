@@ -3,6 +3,8 @@ nav {
     align-items: center;
     padding:10px 15px;
     background:#000000;
+    gap:20px;
+    
 
     a {
         text-decoration: none;
@@ -11,5 +13,9 @@ nav {
         &:hover{
             filter: brightness(90%);
         }
+    }
+    a:last-child {
+        border-left: 1px solid #fff;
+        padding-left:25px;
     }
 }
