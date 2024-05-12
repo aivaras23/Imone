@@ -13,4 +13,5 @@ export class ContactsService {
     return this.http.post('https://imone-f74d3-default-rtdb.europe-west1.firebasedatabase.app/contacts.json', contact);
   
   }
+
 }

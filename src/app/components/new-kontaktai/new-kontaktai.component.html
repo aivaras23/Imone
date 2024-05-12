@@ -25,9 +25,7 @@
             <label for="">Imone:</label>
             <div class="form-input">
                 <select name="" id="" formControlName="company">
-                    <option value="">abc</option>
-                    <option value="">abc</option>
-                    <option value="">abc</option>
+                    <option *ngFor="let company of companyNames" value="{{company.name}}">{{company.name}}</option>
                 </select>
             </div>
         </div>
@@ -36,6 +34,7 @@
             <div class="form-input" formArrayName="phonenumbers">
                 <div *ngFor="let phonenumber of phonenumbers; let i = index">
                     <input type="text" [formControlName]="i">
+                    <span *ngIf="!contactForm.get('phonenumbers')?.valid && contactForm.get('phonenumbers')?.touched">Pareigos laukelis yra privalomas, nuo 2 simboliu</span>
                 </div>
             </div>
             <div class="form-buttons">

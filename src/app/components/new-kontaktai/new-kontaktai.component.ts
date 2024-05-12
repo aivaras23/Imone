@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactsService } from '../../services/contacts.service';
+import { Company } from '../../models/company';
+import { CompanyService } from '../../services/company.service';
 
 @Component({
   selector: 'app-new-kontaktai',
@@ -13,8 +15,9 @@ import { ContactsService } from '../../services/contacts.service';
 export class NewKontaktaiComponent {
 
   public contactForm:FormGroup;
+  public companyNames: Company[] = [];
 
-  constructor(private contactsService:ContactsService){
+  constructor(private contactsService:ContactsService, private companyService:CompanyService){
     this.contactForm = new FormGroup({
       'name':new FormControl(null, [Validators.required, Validators.minLength(2)]),
       'surname':new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -24,6 +27,7 @@ export class NewKontaktaiComponent {
         new FormControl(null, Validators.required)
       ])
     })
+    this.loadCompanyNames();
   }
 
   submitContacts(){
@@ -46,4 +50,11 @@ export class NewKontaktaiComponent {
   delPhoneNumber(){
     (this.contactForm.get('phonenumbers') as FormArray).removeAt(-1);
   }
+
+  public loadCompanyNames(){
+    this.companyService.loadCompanyNames().subscribe((data)=> {
+      this.companyNames = data;
+    })
+  }
+
 }
