@@ -33,8 +33,8 @@
             <label for="">Telefono numeris:</label>
             <div class="form-input" formArrayName="phonenumbers">
                 <div *ngFor="let phonenumber of phonenumbers; let i = index">
-                    <input type="text" [formControlName]="i">
-                    <span *ngIf="!contactForm.get('phonenumbers')?.valid && contactForm.get('phonenumbers')?.touched">Pareigos laukelis yra privalomas, nuo 2 simboliu</span>
+                    <input type="text" [formControlName]="i" style="margin-top: 10px;">
+                    <!-- <span *ngIf="!contactForm.get('phonenumbers')?.valid && contactForm.get('phonenumbers')?.touched">Pareigos laukelis yra privalomas, nuo 2 simboliu</span>-->
                 </div>
             </div>
             <div class="form-buttons">
@@ -42,6 +42,6 @@
                 <button type="button" (click)="delPhoneNumber()">Pasalinti papildoma tel nr.</button>
             </div>
         </div>
-        <button type="submit">Prideti</button>
+        <button type="submit" [disabled]="!contactForm.valid">Prideti</button>
     </form>
 </main>
