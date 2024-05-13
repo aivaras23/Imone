@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ContactsService } from '../../services/contacts.service';
 import { Company } from '../../models/company';
 import { CompanyService } from '../../services/company.service';
@@ -22,9 +22,9 @@ export class NewKontaktaiComponent {
       'name':new FormControl(null, [Validators.required, Validators.minLength(2)]),
       'surname':new FormControl(null, [Validators.required, Validators.minLength(2)]),
       'position':new FormControl(null, [Validators.required, Validators.minLength(2)]),
-      'company': new FormControl(null),
+      'company': new FormControl(null, [Validators.required]),
       'phonenumbers': new FormArray([
-        new FormControl(null, Validators.required)
+        new FormControl(null, [Validators.required, this.validateNumber])
       ])
     })
     this.loadCompanyNames();
@@ -56,5 +56,21 @@ export class NewKontaktaiComponent {
       this.companyNames = data;
     })
   }
+
+  validateNumber(control: AbstractControl<any, any>): ValidationErrors | null {
+    const phoneNumber:string = control.value;
+
+     if (phoneNumber != null) {
+      if (!phoneNumber.startsWith('+')) {
+        return { 'error': 'Telefono numeris turi prasideti su pliuso zenkliu (+)' };
+      }
+      if (phoneNumber.length < 10 || phoneNumber.length > 12) {
+        return { 'error': 'Netinkamas ilgis, telefono numerio ilgis turi buti nuo 10 iki 12 simboliu' };
+      }
+    }
+    
+    return null; 
+  }
+
 
 }

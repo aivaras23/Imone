@@ -3,7 +3,7 @@
         <div class="form-row">
             <label for="">Imones Pavadinimas:</label>
             <div class="form-input">
-                <input type="text" name="name" id="" ngModel required minlength="2" maxlength="30" pattern="[a-zA-Z]*" #inputName="ngModel">
+                <input type="text" name="name" id="" ngModel required minlength="2" maxlength="30" pattern="[a-zA-Z]*" #inputName="ngModel"> <!---->
                 <span *ngIf="!inputName.valid && inputName.touched">Imones Pavadinimas yra privalomas, nuo 2-30 simboliu, tekstas</span>
             </div>
         </div>

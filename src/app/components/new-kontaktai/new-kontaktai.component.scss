@@ -27,6 +27,12 @@ form {
         span {
             color: #d30303;
         }
+        .error {
+            border: 2px solid red;
+            box-shadow: 0 0 4px #ff0000;
+            background-color: #fff0f0;
+        }
+    
     }
 
     button {
