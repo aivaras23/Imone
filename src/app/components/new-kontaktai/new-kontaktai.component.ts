@@ -19,9 +19,9 @@ export class NewKontaktaiComponent {
 
   constructor(private contactsService:ContactsService, private companyService:CompanyService){
     this.contactForm = new FormGroup({
-      'name':new FormControl(null, [Validators.required, Validators.minLength(2)]),
-      'surname':new FormControl(null, [Validators.required, Validators.minLength(2)]),
-      'position':new FormControl(null, [Validators.required, Validators.minLength(2)]),
+      'name':new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
+      'surname':new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
+      'position':new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
       'company': new FormControl(null, [Validators.required]),
       'phonenumbers': new FormArray([
         new FormControl(null, [Validators.required, this.validateNumber])
