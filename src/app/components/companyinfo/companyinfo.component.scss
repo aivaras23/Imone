@@ -1,0 +1,42 @@
+main {
+    width: 100vw;
+    height: 100vh;
+    background-color: #F3F0E7;
+}
+
+.company-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 100px;
+
+    h1 {
+        background:#f5f57a;
+        width: 1000px;
+        text-align: center;
+        border-bottom: 2px solid #000;
+    }
+
+    table {
+        background: rgb(231, 231, 126);
+        width: 1000px;
+        display:flex;
+        align-items: center;
+        border-bottom: 2px solid #000;
+        thead {
+            tr {
+                display:flex;
+                th {
+                    padding:10px 30px;
+                    border-left: 1px solid #000;
+                }
+                th:last-child{
+                    border-right:1px solid #000;
+                }
+         
+            }
+        }
+        
+    }
+}
