@@ -16,27 +16,19 @@ main {
         width: 1000px;
         text-align: center;
         border-bottom: 2px solid #000;
+        margin-bottom: 20px;
     }
 
     table {
         background: rgb(231, 231, 126);
         width: 1000px;
-        display:flex;
-        align-items: center;
         border-bottom: 2px solid #000;
-        thead {
-            tr {
-                display:flex;
-                th {
-                    padding:10px 30px;
-                    border-left: 1px solid #000;
-                }
-                th:last-child{
-                    border-right:1px solid #000;
-                }
-         
-            }
-        }
+        border-collapse: collapse;
+     th, td {
+        padding: 10px 20px;
+        border: 1px solid #000;
+   
+    }
         
     }
 }

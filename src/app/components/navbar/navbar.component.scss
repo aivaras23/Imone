@@ -14,8 +14,11 @@ nav {
             filter: brightness(90%);
         }
     }
-    a:last-child {
+    a {
         border-left: 1px solid #fff;
         padding-left:25px;
+    }
+    a:first-child {
+        border:none;
     }
 }

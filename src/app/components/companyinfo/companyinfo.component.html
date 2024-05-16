@@ -13,7 +13,36 @@
                 </tr>
             </thead>
             <tbody>
+                <tr *ngFor="let company of companyList; let i = index;">
+                    <td>{{ company.name }}</td>
+                    <td>{{ company.companyCode }}</td>
+                    <td>{{ company.PVMregistrationCode }}</td>
+                    <td>{{ company.adress }}</td>
+                    <td>{{ company.email }}</td>
+                    <td>{{ company.phoneNumber }}</td>
+                </tr>
+            </tbody>
+        </table>
 
+        <h1 style="margin-top: 100px;">Kontaktu sarasas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Vardas</th>
+                    <th>Pavarde</th>
+                    <th>Pozicija</th>
+                    <th>Imone</th>
+                    <th>Telefonai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let contacts of contactsList; let i = index;">
+                    <td>{{ contacts.name }}</td>
+                    <td>{{ contacts.surname }}</td>
+                    <td>{{ contacts.position }}</td>
+                    <td>{{ contacts.company }}</td>
+                    <td>{{ contacts.phonenumbers }}</td>
+                </tr>
             </tbody>
         </table>
     </div>

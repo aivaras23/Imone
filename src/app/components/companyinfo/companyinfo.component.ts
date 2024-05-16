@@ -17,6 +17,11 @@ export class CompanyinfoComponent {
     public contactsList:Contacts[]= [];
 
     constructor(private companyService:CompanyService, private contactsService:ContactsService){
-  
+      this.companyService.loadCompanyNames().subscribe((c)=> {
+        this.companyList=c;
+      })
+      this.contactsService.loadContacts().subscribe((c)=> {
+        this.contactsList=c;
+      })
     }
 }
