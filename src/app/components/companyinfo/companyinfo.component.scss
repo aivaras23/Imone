@@ -10,25 +10,32 @@ main {
     align-items: center;
     flex-direction: column;
     padding-top: 100px;
+    
 
     h1 {
-        background:#f5f57a;
         width: 1000px;
         text-align: center;
         border-bottom: 2px solid #000;
+        width: 20%;
         margin-bottom: 20px;
+        letter-spacing: 2px;
     }
 
     table {
         background: rgb(231, 231, 126);
         width: 1000px;
-        border-bottom: 2px solid #000;
+        border-bottom: 5px solid #000;
         border-collapse: collapse;
+
      th, td {
         padding: 10px 20px;
         border: 1px solid #000;
-   
+        font-size: 18px;
     }
-        
+
+  th {
+      background-color: rgb(69, 69, 34);
+      color:#fff;
+  }
     }
 }
