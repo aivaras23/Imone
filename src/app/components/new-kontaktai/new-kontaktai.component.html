@@ -5,43 +5,43 @@
             <div class="form-row">
                 <label for="">Vardas:</label>
                 <div class="form-input">
-                    <input type="text" name="name" id="" formControlName="name" [class.error]="!contactForm.get('name')?.valid && contactForm.get('name')?.touched">
-                    <span *ngIf="!contactForm.get('name')?.valid && contactForm.get('name')?.touched">Vardo laukelis yra privalomas, nuo 2-30 simboliu</span>
+                    <input type="text" name="name" id="" formControlName="name" [class.error]="!contactForm.get('name')?.valid && contactForm.get('name')?.touched" [@inputField]="inputState[0]" (focus)="inputFocus(0,true)" (blur)="inputFocus(0,false)">
+                    <span [@errorSpan] *ngIf="!contactForm.get('name')?.valid && contactForm.get('name')?.touched">Vardo laukelis yra privalomas, nuo 2-30 simboliu</span>
                 </div>
             </div>
             <div class="form-row">
                 <label for="">Pavarde:</label>
                 <div class="form-input">
-                    <input type="text" name="name" id="" formControlName="surname" [class.error]="!contactForm.get('surname')?.valid && contactForm.get('surname')?.touched">
-                    <span *ngIf="!contactForm.get('surname')?.valid && contactForm.get('surname')?.touched">Pavardes laukelis yra privalomas, nuo 2-30 simboliu </span>
+                    <input type="text" name="name" id="" formControlName="surname" [class.error]="!contactForm.get('surname')?.valid && contactForm.get('surname')?.touched" [@inputField]="inputState[1]" (focus)="inputFocus(1,true)" (blur)="inputFocus(1,false)">
+                    <span [@errorSpan] *ngIf="!contactForm.get('surname')?.valid && contactForm.get('surname')?.touched">Pavardes laukelis yra privalomas, nuo 2-30 simboliu </span>
                 </div>
             </div>
             <div class="form-row">
                 <label for="">Pareigos:</label>
                 <div class="form-input">
-                    <input type="text" name="name" id="" formControlName="position" [class.error]="!contactForm.get('position')?.valid && contactForm.get('position')?.touched">
-                    <span *ngIf="!contactForm.get('position')?.valid && contactForm.get('position')?.touched">Pareigos laukelis yra privalomas, nuo 2-30 simboliu </span>
+                    <input type="text" name="name" id="" formControlName="position" [class.error]="!contactForm.get('position')?.valid && contactForm.get('position')?.touched" [@inputField]="inputState[2]" (focus)="inputFocus(2,true)" (blur)="inputFocus(2,false)">
+                    <span [@errorSpan] *ngIf="!contactForm.get('position')?.valid && contactForm.get('position')?.touched">Pareigos laukelis yra privalomas, nuo 2-30 simboliu </span>
                 </div>
             </div>
             <div class="form-row">
                 <label for="">Imone:</label>
                 <div class="form-input">
-                    <select name="" id="" formControlName="company" [class.error]="!contactForm.get('company')?.valid && contactForm.get('company')?.touched">
+                    <select name="" id="" formControlName="company" [class.error]="!contactForm.get('company')?.valid && contactForm.get('company')?.touched" [@inputField]="inputState[3]" (focus)="inputFocus(3,true)" (blur)="inputFocus(3,false)">
                         <option *ngFor="let company of companyNames" value="{{company.name}}">{{company.name}}</option>
                     </select>
-                    <span *ngIf="!contactForm.get('company')?.valid && contactForm.get('company')?.touched">Imones pasirinkimas yra privalomas, pasirinkite imone</span>
+                    <span [@errorSpan] *ngIf="!contactForm.get('company')?.valid && contactForm.get('company')?.touched">Imones pasirinkimas yra privalomas, pasirinkite imone</span>
                 </div>
             </div>
             <div class="form-row">
                 <label for="">Telefono numeris:</label>
                 <div class="form-input" formArrayName="phonenumbers">
                     <div *ngFor="let phonenumber of phonenumbers; let i = index">
-                        <input type="text" [formControlName]="i" style="margin-top: 10px;" placeholder="+370 600 00000" [class.error]="!contactForm.get('phonenumbers')?.valid && contactForm.get('phonenumbers')?.touched">
+                        <input type="text" [formControlName]="i" style="margin-top: 10px;" placeholder="+370 600 00000" [class.error]="!contactForm.get('phonenumbers')?.valid && contactForm.get('phonenumbers')?.touched" [@inputField]="inputState[4]" (focus)="inputFocus(4,true)" (blur)="inputFocus(4,false)" [@caption]="numberState">
                     </div>
-                    <span *ngIf="!contactForm.get('phonenumbers')?.valid && contactForm.get('phonenumbers')?.touched">Telefono numeris turi sudaryti 10-12 skaiciu, Formatas:+370 600 00000 </span>
+                    <span [@errorSpan] *ngIf="!contactForm.get('phonenumbers')?.valid && contactForm.get('phonenumbers')?.touched">Telefono numeris turi sudaryti 10-12 skaiciu, Formatas:+370 600 00000 </span>
                 </div>
                 <div class="form-buttons">
-                    <button type="button" (click)="addPhoneNumber()">+</button>
+                    <button [@caption]="addPhoneNumber" type="button" (click)="addPhoneNumber()">+</button>
                     <button type="button" (click)="delPhoneNumber()">-</button>
                 </div>
             </div>

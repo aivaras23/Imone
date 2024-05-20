@@ -4,18 +4,71 @@ import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule
 import { ContactsService } from '../../services/contacts.service';
 import { Company } from '../../models/company';
 import { CompanyService } from '../../services/company.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-new-kontaktai',
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './new-kontaktai.component.html',
-  styleUrl: './new-kontaktai.component.scss'
+  styleUrl: './new-kontaktai.component.scss',
+animations: [
+    trigger('inputField',[
+      state('normal',style({
+        'font-size':'16px',
+        'height':'30px',
+      })),
+      state('focus',style({
+        'font-size':'25px',
+        'height':'40px',
+      })),
+      transition('* <=> *',[
+        animate(300)
+      ])
+    ]),
+    trigger('errorSpan',[
+      state('*',style({
+        'opacity':'1',
+      })),
+      transition('void => *',[
+        style({
+          'opacity':'0',
+        }),
+        animate(500,style({
+          'opacity':'0'
+        })),
+        animate(500)
+      ]),
+      transition('* => void',[
+        animate(500,style({
+          'opacity':'0'
+        })),
+        animate(500,style({
+          'opacity':'0'
+        })),
+      ])
+    ]),
+    trigger('caption',[
+      state('initial',style({
+        'opacity':'0.5'
+      })),
+      state('normal',style({
+        'opacity':'1'
+      })),
+      transition('initial => normal',[
+        animate(1000)
+      ]),
+    ])
+  ]
 })
 export class NewKontaktaiComponent {
 
   public contactForm:FormGroup;
   public companyNames: Company[] = [];
+
+  public inputState = ['normal','normal','normal','normal','normal'];
+
+  public numberState = 'normal';
 
   constructor(private contactsService:ContactsService, private companyService:CompanyService){
     this.contactForm = new FormGroup({
@@ -44,8 +97,13 @@ export class NewKontaktaiComponent {
   }
 
   addPhoneNumber(){
-    const newInput = new FormControl(null, Validators.required);
-    (this.contactForm.get('phonenumbers') as FormArray).push(newInput);
+      this.numberState = 'initial';
+      setTimeout(()=> {
+      const newInput = new FormControl(null, Validators.required);
+      (this.contactForm.get('phonenumbers') as FormArray).push(newInput);
+      this.numberState = 'normal';
+      },100)
+    
   }
   delPhoneNumber(){
     (this.contactForm.get('phonenumbers') as FormArray).removeAt(-1);
@@ -70,6 +128,15 @@ export class NewKontaktaiComponent {
     }
     
     return null; 
+  }
+
+    public inputFocus(id:number,state:boolean){
+    if(state === true){
+      this.inputState[id]='focus';
+    }
+    else {
+      this.inputState[id]='normal';
+    }
   }
 
 
